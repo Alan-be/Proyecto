@@ -280,7 +280,7 @@ public class CapturaInventario extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
-    int renglon = tblInventario.getSelectedRow();
+        int renglon = tblInventario.getSelectedRow();
         int id = (int)tblInventario.getValueAt(renglon, 0);
         InventarioJpaController elim = new InventarioJpaController();
         try {

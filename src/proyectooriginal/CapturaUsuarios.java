@@ -5,6 +5,13 @@
  */
 package proyectooriginal;
 
+import controladores.UsuariosJpaController;
+import entidades.Usuarios;
+import entidades.Vendedores;
+import static java.lang.Boolean.TRUE;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author alana
@@ -29,9 +36,9 @@ public class CapturaUsuarios extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        txtUsuario = new javax.swing.JTextField();
+        txtContra = new javax.swing.JPasswordField();
+        btnIngresar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
@@ -43,9 +50,12 @@ public class CapturaUsuarios extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel2.setText("Contraseña");
 
-        jPasswordField1.setText("jPasswordField1");
-
-        jButton1.setText("Ingresar");
+        btnIngresar.setText("Ingresar");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Salir");
 
@@ -62,19 +72,19 @@ public class CapturaUsuarios extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel2)
                         .addComponent(jLabel1))
-                    .addComponent(jButton1))
+                    .addComponent(btnIngresar))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                            .addComponent(txtContra)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(90, 90, 90)
                         .addComponent(jButton2)))
                 .addContainerGap(98, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(110, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(90, 90, 90))
         );
@@ -86,20 +96,59 @@ public class CapturaUsuarios extends javax.swing.JFrame {
                 .addGap(100, 100, 100)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnIngresar)
                     .addComponent(jButton2))
                 .addContainerGap(116, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+//       controladores.UsuariosJpaController cp = new controladores.UsuariosJpaController();
+//        List<Usuarios> lista = cp.findUsuariosEntities();
+//        String Var1;
+//        String Var2;
+//        CapturaVendedores cv = new CapturaVendedores();
+//        Usuarios usu = new Usuarios();
+//        Var1 = usu.getUsuario();
+//        Var2 = txtUsuario.getText();
+//        if(Var1 == Var2){
+//            cv.setVisible(TRUE);
+//        }else{
+//            JOptionPane.showMessageDialog(this, "No funciona");
+//        }
+        Usuarios usuario = new Usuarios();
+        UsuariosJpaController usu = new UsuariosJpaController();
+        List<Usuarios> datos = usu.findUsuariosEntities();
+        String nombreusuario = txtUsuario.getText();
+        String contra = txtContra.getText();
+        
+        boolean resultado = false;
+        for(Usuarios fila:datos){
+                if(fila.getUsuario().equals(nombreusuario)&&fila.getPassword().equals(contra)){
+                    resultado = true;
+                   
+                    break;
+        }     
+   
+        }
+        if(resultado){
+            JOptionPane.showMessageDialog(this, "Bienvenido" );
+            this.dispose();
+            new PantallaPrincipal().setVisible(true);
+           
+        }else{
+            JOptionPane.showMessageDialog(this, "Error al iniciar sesión");
+        }
+    }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,12 +186,12 @@ public class CapturaUsuarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnIngresar;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txtContra;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
