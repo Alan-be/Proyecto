@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -22,15 +24,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author alana
  */
 @Entity
-@Table(name = "usuarios")
+@Table(name = "ventas")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Usuarios.findAll", query = "SELECT u FROM Usuarios u")
-    , @NamedQuery(name = "Usuarios.findById", query = "SELECT u FROM Usuarios u WHERE u.id = :id")
-    , @NamedQuery(name = "Usuarios.findByUsuario", query = "SELECT u FROM Usuarios u WHERE u.usuario = :usuario")
-    , @NamedQuery(name = "Usuarios.findByPassword", query = "SELECT u FROM Usuarios u WHERE u.password = :password")
-    , @NamedQuery(name = "Usuarios.findByTipo", query = "SELECT u FROM Usuarios u WHERE u.tipo = :tipo")})
-public class Usuarios implements Serializable {
+    @NamedQuery(name = "Ventas.findAll", query = "SELECT v FROM Ventas v")
+    , @NamedQuery(name = "Ventas.findById", query = "SELECT v FROM Ventas v WHERE v.id = :id")
+    , @NamedQuery(name = "Ventas.findByProducto", query = "SELECT v FROM Ventas v WHERE v.producto = :producto")
+    , @NamedQuery(name = "Ventas.findByTotal", query = "SELECT v FROM Ventas v WHERE v.total = :total")})
+public class Ventas implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,27 +40,26 @@ public class Usuarios implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "usuario")
-    private String usuario;
+    @Column(name = "producto")
+    private String producto;
     @Basic(optional = false)
-    @Column(name = "password")
-    private String password;
-    @Basic(optional = false)
-    @Column(name = "tipo")
-    private int tipo;
+    @Column(name = "total")
+    private int total;
+    @JoinColumn(name = "idVendedor", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Vendedores idVendedor;
 
-    public Usuarios() {
+    public Ventas() {
     }
 
-    public Usuarios(Integer id) {
+    public Ventas(Integer id) {
         this.id = id;
     }
 
-    public Usuarios(Integer id, String usuario, String password, int tipo) {
+    public Ventas(Integer id, String producto, int total) {
         this.id = id;
-        this.usuario = usuario;
-        this.password = password;
-        this.tipo = tipo;
+        this.producto = producto;
+        this.total = total;
     }
 
     public Integer getId() {
@@ -70,28 +70,28 @@ public class Usuarios implements Serializable {
         this.id = id;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getProducto() {
+        return producto;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setProducto(String producto) {
+        this.producto = producto;
     }
 
-    public String getPassword() {
-        return password;
+    public int getTotal() {
+        return total;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setTotal(int total) {
+        this.total = total;
     }
 
-    public int getTipo() {
-        return tipo;
+    public Vendedores getIdVendedor() {
+        return idVendedor;
     }
 
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
+    public void setIdVendedor(Vendedores idVendedor) {
+        this.idVendedor = idVendedor;
     }
 
     @Override
@@ -104,10 +104,10 @@ public class Usuarios implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Usuarios)) {
+        if (!(object instanceof Ventas)) {
             return false;
         }
-        Usuarios other = (Usuarios) object;
+        Ventas other = (Ventas) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -116,7 +116,7 @@ public class Usuarios implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Usuarios[ id=" + id + " ]";
+        return "entidades.Ventas[ id=" + id + " ]";
     }
     
 }

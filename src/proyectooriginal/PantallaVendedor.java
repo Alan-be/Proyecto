@@ -9,12 +9,12 @@ package proyectooriginal;
  *
  * @author alana
  */
-public class PantallaPrincipal extends javax.swing.JFrame {
+public class PantallaVendedor extends javax.swing.JFrame {
 
     /**
-     * Creates new form PantallaPrincipal
+     * Creates new form PantallaVendedor
      */
-    public PantallaPrincipal() {
+    public PantallaVendedor() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -28,30 +28,29 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnLocales = new javax.swing.JButton();
+        btnVentas = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btnInventario = new javax.swing.JButton();
-        btnVendedores = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
-        btnUsuarios = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        btnLocales.setText("Vista Locales");
+        btnLocales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLocalesActionPerformed(evt);
+            }
+        });
+
+        btnVentas.setText("Vista Ventas");
+        btnVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVentasActionPerformed(evt);
+            }
+        });
+
         jLabel1.setFont(new java.awt.Font("Arial Black", 2, 24)); // NOI18N
-        jLabel1.setText("Pantalla Principal");
-
-        btnInventario.setText("Registro de inventario");
-        btnInventario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInventarioActionPerformed(evt);
-            }
-        });
-
-        btnVendedores.setText("Registro de vendedores");
-        btnVendedores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVendedoresActionPerformed(evt);
-            }
-        });
+        jLabel1.setText("Pantalla Vendedores ");
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -60,68 +59,57 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnUsuarios.setText("Registro usuarios");
-        btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUsuariosActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addComponent(jLabel1)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addGap(155, 155, 155)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnLocales)
+                    .addComponent(btnVentas))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(btnUsuarios)
-                    .addComponent(btnInventario)
-                    .addComponent(btnVendedores)
-                    .addComponent(btnSalir))
-                .addGap(141, 141, 141))
+                .addContainerGap(69, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(56, 56, 56))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnSalir)
+                        .addGap(171, 171, 171))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                .addComponent(btnVendedores)
-                .addGap(18, 18, 18)
-                .addComponent(btnInventario)
-                .addGap(18, 18, 18)
-                .addComponent(btnUsuarios)
-                .addGap(51, 51, 51)
+                .addGap(68, 68, 68)
+                .addComponent(btnLocales)
+                .addGap(26, 26, 26)
+                .addComponent(btnVentas)
+                .addGap(26, 26, 26)
                 .addComponent(btnSalir)
-                .addGap(69, 69, 69))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVendedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendedoresActionPerformed
-    this.dispose();
-    new CapturaVendedores().setVisible(true);
-    }//GEN-LAST:event_btnVendedoresActionPerformed
+    private void btnLocalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalesActionPerformed
+        this.dispose();
+        new CapturaLocales().setVisible(true);
+    }//GEN-LAST:event_btnLocalesActionPerformed
 
-    private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
-     this.dispose();
-     new CapturaInventario().setVisible(true);
-    }//GEN-LAST:event_btnInventarioActionPerformed
+    private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
+       this.dispose();
+       new Ventas().setVisible(true);
+    }//GEN-LAST:event_btnVentasActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        this.dispose();
-        new CapturaUsuarios().setVisible(true);
+       this.dispose();
+       new CapturaUsuarios().setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
-
-    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
-         this.dispose();
-       new RegistroUsuarios().setVisible(true);
-    }//GEN-LAST:event_btnUsuariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,29 +128,28 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PantallaPrincipal().setVisible(true);
+                new PantallaVendedor().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnInventario;
+    private javax.swing.JButton btnLocales;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton btnUsuarios;
-    private javax.swing.JButton btnVendedores;
+    private javax.swing.JButton btnVentas;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
